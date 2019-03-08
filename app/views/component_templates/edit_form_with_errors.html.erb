@@ -1,0 +1,50 @@
+<% if @component.errors.any? %>
+  <% @component.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit component #<%= @component.id %>
+</h1>
+
+<hr>
+
+<form action="/update_component/<%= @component.id %>" method="post">
+
+  <div class="form-group">
+    <label for="recipe_id">
+      Recipe
+    </label>
+
+    <input type="text" id="recipe_id" name="recipe_id" class="form-control" value="<%= @component.recipe_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="ingredient_id">
+      Ingredient
+    </label>
+
+    <input type="text" id="ingredient_id" name="ingredient_id" class="form-control" value="<%= @component.ingredient_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+
+    <input type="text" id="title" name="title" class="form-control" value="<%= @component.title %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update component
+  </button>
+</form>
+
+<hr>
+
+<a href="/components">
+  Go back
+</a>

@@ -1,0 +1,52 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      My Liked Recipes
+    </h1>
+
+    <a href="/recipes">
+      Browse all recipes
+    </a>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Title
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Description
+        </th>
+        <th>
+          Unlike
+        </th>
+      </tr>
+<table>
+  <% Like.where(user_id: current_user.id).each do |like| %>
+  <tr>
+      <td>
+        <a href="/recipes/<%= Recipe.find(like.recipe_id).id %>">
+          <%= Recipe.find(like.recipe_id).title %>
+        </a>
+      </td>
+      <td>
+        <img src="<%= Recipe.find(like.recipe_id).image %>" width="320">
+      </td>
+      <td>
+        <%= Recipe.find(like.recipe_id).instruction %>
+      </td>
+      <td>
+        <a href="/delete_like/<%= like.id %>" class="btn btn-link">
+          <i class="fa fa-heart" style ="color:red"></i>
+        </a></td>
+  </tr>
+<% end %>
+</table>

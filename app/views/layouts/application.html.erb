@@ -1,33 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FinalProject</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>
+    What Can I Make?
+  </title>
 
-    <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
-    <meta charset="utf-8">
+  <%= render "shared/bootstrapcdn_assets" %>
 
-    <!-- Connect Font Awesome CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.2/css/all.css">
+  <%= csrf_meta_tags %>
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
+  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 
-    <!-- Connect Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
-    <!-- Connect Bootstrap JavaScript and its dependencies -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <style>
+    body { padding-bottom: 70px }
+  </style>
+</head>
 
-    <!-- Make it responsive to small screens -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">What Can I Make?</a>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/recipes">All Recipes</a></li>
+          <li class="nav-item"><a class="nav-link" href="/my_ingredients">My Ingredients</a></li>
+          <li class="nav-item"><a class="nav-link" href="/my_likes">My Likes</a></li>
+        </ul>
 
-  <body>
+        <ul class="navbar-nav navbar-right">
+          <% if current_user == nil %>
+            <li class="nav-item">
+              <a href="/users/sign_in" class="nav-link" >
+                Sign In
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="/users/sign_up" class="nav-link" >
+                Sign Up
+              </a>
+            </li>
+          <% else %>
+          <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/users/<%= current_user.id %>">My Wall</a></li>
+          </ul>
+            <li class="nav-item">
+              <a href="/users/edit" class="nav-link" >
+                <%= current_user.username %>
+              </a>
+            </li>
+  
+            <li class="nav-item">
+              <a href="/users/sign_out" data-method="delete" class="nav-link">
+                Sign Out
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+  <div class="container">
+    <%= render "shared/flashes" %>
+
     <%= yield %>
+  </div>
 
-    <%= dev_tools if Rails.env.development? %>
-  </body>
+</body>
 </html>

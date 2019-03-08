@@ -1,0 +1,148 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      "<%= @recipe.title %>" Recipe Details
+    </h1>
+
+    <div class="row mb-2">
+
+      <div class="col">
+        <a href="/recipes/<%= @recipe.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit recipe
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_recipe/<%= @recipe.id %>" class="btn btn-block btn-outline-secondary">
+          Delete recipe
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @recipe.title %>
+      </dd>
+      
+      <dt>
+        Rating
+      </dt>
+      <dd>
+        <% @recipe.rating.to_i.times do  %>
+         <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+      </dd>
+      
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <img src="<%= @recipe.image %>" width="320">
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @recipe.instruction %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@recipe.created_at) %> ago
+      </dd>
+      <dt>
+        Comments
+      </dt>
+      <dd>
+        <% Comment.where(recipe_id: @recipe.id).each do |comment| %>
+          <div>
+          "<%= comment.body %>"
+          <% if comment.user == current_user %>
+            <a href="/delete_comment/<%= comment.id %>">
+              <i class="fa fa-trash"></i>
+            </a>
+          <% end %>
+          </div>
+          <div>
+            -<a href="/users/<%= comment.user_id %>">
+              <%= comment.user.username %>
+            </a>
+          </div>
+        <% end %>
+      </dd>
+      <dt>
+        Add a new comment
+      </dt>
+      <dd>
+        <form action="/create_comment" method="post" redirect_to("/recipes/<%= @recipe.id %>")>
+
+        <div class="form-group">
+          <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment...">
+        </div>
+      
+        <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
+        
+        <input type="hidden" id="photo_id" name="recipe_id" class="form-control" value="<%= @recipe.id %>">
+      
+        <button class="btn btn-block btn-outline-secondary">
+          Add Comment 
+        </button>
+      </form>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+<a href="/recipes">
+  Go back
+</a>
+
+<hr>
+
+<div class="card mt-3 mb-5">
+  <div class="card-header">
+    Components
+  </div>
+  <ul class="list-group">
+    <% @recipe.components.each do |component| %>
+      <li class="list-group-item">
+        <a href="/ingredients/<%= component.ingredient_id %>">
+          <%= Ingredient.find(component.ingredient_id).title %>
+        </a>
+        <a href="/delete_component/<%= component.id %>" style="color:red"> Remove </a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="card-header">
+    Add a new component for this movie
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <form action="/create_component" method="post">
+        <div class="form-group">
+          <label for="ingredient_id">
+            Ingredient
+          </label>
+
+          <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :class => "form-control") %>
+          or <a href="/ingredients/new">add a new ingredient</a> first
+        </div>
+
+        <!-- Label and input for actor_id -->
+        <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+
+        <button class="btn btn-block btn-outline-secondary">
+          Create component
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>

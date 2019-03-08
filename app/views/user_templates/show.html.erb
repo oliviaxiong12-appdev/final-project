@@ -1,0 +1,49 @@
+<h1><%= @user.username %>'s Recipes</h1>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Title
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Description
+        </th>
+        <th>
+          Comments
+        </th>
+      </tr>
+      
+      <% Recipe.where(user_id: current_user.id).each do |recipe| %>
+      <tr>
+        <td>
+          <a href="/recipes/<%= recipe.id %>">
+            <%= recipe.title %>
+          </a>
+        </td>
+        <td>
+          <img src="<%= recipe.image %>" width="320">
+        </td>
+        <td>
+          <%= recipe.instruction %>
+        </td>
+        <td>
+          <% Comment.where(recipe_id: recipe.id).each do |comment| %>
+            <div>
+            "<%= comment.body %>"
+            </div>
+            <div>
+              -<a href="/users/<%= comment.user_id %>">
+            <%#= User.find(comment.user_id).username %>
+                <%= comment.user.username %>
+              </a>
+            </div>
+          <% end %>
+      </tr>
+    <% end %>

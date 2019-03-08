@@ -1,0 +1,31 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1 s>
+      My Ingredients
+    </h1>
+
+    <a href="/ingredients/new" class="btn btn-block btn-outline-secondary">
+      Add a new ingredient
+    </a>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Title
+        </th>
+      </tr>
+      
+  <% Ingredient.where(user_id: current_user.id).each do |ingredient| %>
+  <tr>
+      <td>
+        <a href="/ingredients/<%= ingredient.id %>">
+          <%= ingredient.title %>
+        </a>
+      </td>
+  </tr>
+<% end %>
+</table>

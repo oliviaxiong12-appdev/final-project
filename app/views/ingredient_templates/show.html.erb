@@ -1,0 +1,49 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Ingredient details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/my_ingredients" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit ingredient
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-block btn-outline-secondary">
+          Delete ingredient
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @ingredient.title %>
+      </dd>
+      <dt>
+        Recipes with this ingredient
+      </dt>
+      <dd>
+        <% Component.where(ingredient_id: @ingredient.id).each do |component| %>
+          <li class="list-group-item">
+            <a href= "/recipes/<%= component.recipe_id %>">
+              <%= Recipe.find(component.recipe_id).title %>
+            </a>
+          </li>
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+</div>
+

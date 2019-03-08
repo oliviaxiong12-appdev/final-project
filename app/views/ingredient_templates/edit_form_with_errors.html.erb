@@ -1,0 +1,42 @@
+<% if @ingredient.errors.any? %>
+  <% @ingredient.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit ingredient #<%= @ingredient.id %>
+</h1>
+
+<hr>
+
+<form action="/update_ingredient/<%= @ingredient.id %>" method="post">
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @ingredient.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+
+    <input type="text" id="title" name="title" class="form-control" value="<%= @ingredient.title %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update ingredient
+  </button>
+</form>
+
+<hr>
+
+<a href="/ingredients">
+  Go back
+</a>
