@@ -32,6 +32,12 @@
         <%= @ingredient.title %>
       </dd>
       <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @ingredient.description %>
+      </dd>
+      <dt>
         Recipes with this ingredient
       </dt>
       <dd>
@@ -40,8 +46,37 @@
             <a href= "/recipes/<%= component.recipe_id %>">
               <%= Recipe.find(component.recipe_id).title %>
             </a>
+            <a href="/delete_component/<%= component.id %>" style="color:red">
+              Delete
+            </a>
           </li>
         <% end %>
+    <hr>
+  <div class="card-header">
+    Add a new recipe that uses this ingredient
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <form action="/create_component" method="post">
+        <div class="form-group">
+          <label for="recipe_id">
+            Recipe
+          </label>
+
+          <%= select_tag("recipe_id", options_from_collection_for_select(Recipe.all, :id, :title), :class => "form-control") %>
+          or <a href="/recipes/new">add a new recipe</a> first
+        </div>
+
+        <!-- Label and input for actor_id -->
+        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+
+        <button class="btn btn-block btn-outline-secondary">
+          Add component
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>
       </dd>
     </dl>
   </div>

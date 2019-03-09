@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-
+  devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
   # Routes for the Ingredient resource:
   root "recipes#index"
   get("/my_ingredients", { :controller => "ingredients", :action => "show_my_ingredients" })
@@ -105,10 +108,6 @@ Rails.application.routes.draw do
 
   # DELETE
   get("/delete_user/:id_to_remove", { :controller => "users", :action => "destroy_row" })
-  
 
-  devise_for :users
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

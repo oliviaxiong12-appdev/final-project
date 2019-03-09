@@ -26,7 +26,7 @@ class ComponentsController < ApplicationController
     if @component.valid?
       @component.save
 
-      redirect_back(:fallback_location => "/recipes/#{@component.recipe_id}", :notice => "Component created successfully.")
+      redirect_back(:fallback_location => "/recipes/#{@component.recipe_id}", :notice => "Component added successfully.")
     else
       render("component_templates/new_form_with_errors.html.erb")
     end
@@ -58,6 +58,6 @@ class ComponentsController < ApplicationController
 
     @component.destroy
 
-    redirect_to("/recipes/#{@component.recipe_id}", :notice => "Component deleted successfully.")
+    redirect_to("/recipes/#{@component.recipe_id}", :notice => "Component removed successfully.")
   end
 end

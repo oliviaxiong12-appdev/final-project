@@ -12,7 +12,6 @@ class IngredientsController < ApplicationController
   end
 
   def show_my_ingredients
-
     render("ingredient_templates/show_my_ingredients.html.erb")
   end
   
@@ -28,6 +27,7 @@ class IngredientsController < ApplicationController
 
     @ingredient.user_id = params.fetch("user_id")
     @ingredient.title = params.fetch("title")
+    @ingredient.description = params.fetch("description")
 
     if @ingredient.valid?
       @ingredient.save
@@ -49,6 +49,7 @@ class IngredientsController < ApplicationController
 
     @ingredient.user_id = params.fetch("user_id")
     @ingredient.title = params.fetch("title")
+    @ingredient.description = params.fetch("description")
 
     if @ingredient.valid?
       @ingredient.save

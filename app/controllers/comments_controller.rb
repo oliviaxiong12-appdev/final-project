@@ -59,6 +59,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params.fetch("id_to_remove"))
     @comment.destroy
 
-    redirect_to :back, :notice => "Comment deleted."
+    redirect_to("/recipes/", :notice => "Comment deleted.")
   end
 end

@@ -18,13 +18,7 @@
 
 <form action="/create_ingredient" method="post">
 
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @ingredient.user_id %>">
-  </div>
+  <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
 
   <div class="form-group">
     <label for="title">
@@ -32,6 +26,14 @@
     </label>
 
     <input type="text" id="title" name="title" class="form-control" value="<%= @ingredient.title %>">
+  </div>
+  
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control" value="<%= @ingredient.description %>">
   </div>
 
   <button class="btn btn-block btn-outline-secondary">

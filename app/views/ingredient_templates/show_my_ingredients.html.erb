@@ -1,12 +1,17 @@
 <div class="row mb-3">
   <div class="col-md-12">
-    <h1 s>
+    <h1>
       My Ingredients
     </h1>
 
-    <a href="/ingredients/new" class="btn btn-block btn-outline-secondary">
-      Add a new ingredient
-    </a>
+    Add an ingredient to my pantry
+    
+    <p></p>
+    
+    or <a href="/ingredients/new">
+      add a new ingredient
+    </a> first
+    
   </div>
 </div>
 
@@ -15,7 +20,12 @@
     <table class="table">
       <tr>
         <th>
-          Title
+          Ingredient
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
         </th>
       </tr>
       
@@ -24,6 +34,14 @@
       <td>
         <a href="/ingredients/<%= ingredient.id %>">
           <%= ingredient.title %>
+        </a>
+      </td>
+      <td>
+        <%= ingredient.description %>
+      </td>
+      <td>
+        <a href="/delete_ingredient/<%= ingredient.id %>">
+          Delete
         </a>
       </td>
   </tr>

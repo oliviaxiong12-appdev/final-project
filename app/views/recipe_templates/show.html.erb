@@ -109,7 +109,7 @@
 
 <div class="card mt-3 mb-5">
   <div class="card-header">
-    Components
+    Ingredients
   </div>
   <ul class="list-group">
     <% @recipe.components.each do |component| %>
@@ -122,7 +122,7 @@
     <% end %>
   </ul>
   <div class="card-header">
-    Add a new component for this movie
+    Add a new ingredient to this recipe
   </div>
   <ul class="list-group">
     <li class="list-group-item">
@@ -140,7 +140,7 @@
         <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
 
         <button class="btn btn-block btn-outline-secondary">
-          Create component
+          Add ingredient
         </button>
       </form>
     </li>

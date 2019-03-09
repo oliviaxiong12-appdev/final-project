@@ -25,11 +25,12 @@
         <th>
           Description
         </th>
+        
         <th>
           Unlike
         </th>
       </tr>
-<table>
+      
   <% Like.where(user_id: current_user.id).each do |like| %>
   <tr>
       <td>
