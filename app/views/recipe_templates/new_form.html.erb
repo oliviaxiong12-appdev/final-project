@@ -40,18 +40,15 @@
     <textarea id="instruction" name="instruction" class="form-control" rows="3"></textarea>
   </div>
   
-  <div class="card-header">
-    Add ingredients to this recipe
-  </div>
-  <ul class="list-group">
+  <!--<ul class="list-group">
     <li class="list-group-item">
       <form action="/create_component" method="post">
         <div class="form-group">
           <label for="ingredient_id">
-            Ingredient
+            Add ingredients to this recipe
           </label>
 
-          <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :class => "form-control") %>
+          <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :multiple => true, :class => "form-control") %>
           or <a href="/ingredients/new">add a new ingredient</a> first
         </div>
 
@@ -65,7 +62,7 @@
       </form>
     </li>
   </ul>
-  <p></p>
+  <p></p>-->
   <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
 
   <button class="btn btn-block btn-outline-secondary">

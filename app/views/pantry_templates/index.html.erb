@@ -54,21 +54,37 @@
         </th>
       </tr>
       
+      <% Pantry.where(user_id: current_user.id).each do |pantry| %>
+        <tr>
+          <td>
+            <a href="/ingredients/<%= Ingredient.find(pantry.ingredient_id).id %>">
+              <%= Ingredient.find(pantry.ingredient_id).title %>
+            </a>
+          </td>
+          <td>
+            <%= Ingredient.find(pantry.ingredient_id).description %>
+          </td>
+          <td>
+            <a href="/delete_pantry/<%= pantry.id %>">
+              Remove
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<h2>Recommended recipes</h2>
   <% Pantry.where(user_id: current_user.id).each do |pantry| %>
-  <tr>
-      <td>
-        <a href="/ingredients/<%= Ingredient.find(pantry.ingredient_id).id %>">
-          <%= Ingredient.find(pantry.ingredient_id).title %>
-        </a>
-      </td>
-      <td>
-        <%= Ingredient.find(pantry.ingredient_id).description %>
-      </td>
-      <td>
-        <a href="/delete_pantry/<%= pantry.id %>">
-          Remove
-        </a>
-      </td>
-  </tr>
-<% end %>
-</table>
+    <ul>
+      <% Component.where(ingredient_id: pantry.ingredient_id).each do |component| %>
+        <li class="list-group-item">
+          <a href= "/recipes/<%= component.recipe_id %>">
+            <%= Recipe.find(component.recipe_id).title %>
+          </a>
+          uses <%= Ingredient.find(pantry.ingredient_id).title %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
