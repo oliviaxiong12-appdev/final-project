@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
 
       redirect_back(:fallback_location => "/recipes", :notice => "Recipe created successfully.")
     else
-      render("recipe_templates/new_form_with_errors.html.erb")
+      render("recipe_templates/new_form.html.erb")
     end
   end
 

@@ -1,8 +1,12 @@
 <h1>
-  Edit ingredient #<%= @ingredient.id %>
+  Edit ingredient
 </h1>
 
 <hr>
+
+<a href="/create_pantry" method="post">
+  Add to my pantry
+</a>
 
 <form action="/update_ingredient/<%= @ingredient.id %>" method="post">
 

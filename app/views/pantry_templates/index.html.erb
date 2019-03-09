@@ -1,3 +1,13 @@
+<% if @pantry.present? %>
+  <% if @pantry.errors.any? %>
+    <% @pantry.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
@@ -7,11 +17,10 @@
     <div>
     <ul class="list-group">
     <li class="list-group-item">
-        <h3>Add an ingredient to my pantry</h3>
       <form action="/create_pantry" method="post">
         <div class="form-group">
           <label for="ingredient_id">
-            Ingredient
+            <h3>Add an ingredient to my pantry</h3>
           </label>
 
           <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :class => "form-control") %>
@@ -28,12 +37,6 @@
     </li>
   </ul>
   </div>
-    <p></p>
-    
-    or <a href="/ingredients/new">
-      add a new ingredient
-    </a> first
-    
   </div>
 </div>
 
@@ -54,16 +57,16 @@
   <% Pantry.where(user_id: current_user.id).each do |pantry| %>
   <tr>
       <td>
-        <a href="/ingredients/<%= ingredient.id %>">
-          <%= ingredient.title %>
+        <a href="/ingredients/<%= Ingredient.find(pantry.ingredient_id).id %>">
+          <%= Ingredient.find(pantry.ingredient_id).title %>
         </a>
       </td>
       <td>
-        <%= ingredient.description %>
+        <%= Ingredient.find(pantry.ingredient_id).description %>
       </td>
       <td>
-        <a href="/delete_ingredient/<%= ingredient.id %>">
-          Delete
+        <a href="/delete_pantry/<%= pantry.id %>">
+          Remove
         </a>
       </td>
   </tr>

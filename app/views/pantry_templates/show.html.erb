@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Pantry #<%= @pantry.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/pantries" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/pantries/<%= @pantry.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit pantry
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_pantry/<%= @pantry.id %>" class="btn btn-block btn-outline-secondary">
+          Delete pantry
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @pantry.user_id %>
+      </dd>
+
+      <dt>
+        Ingredient
+      </dt>
+      <dd>
+        <%= @pantry.ingredient_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@pantry.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@pantry.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

@@ -1,7 +1,16 @@
+<% if @recipe.present? %>
+  <% if @recipe.errors.any? %>
+    <% @recipe.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
 <h1>
   Add a new recipe
 </h1>
-
 
 <hr>
 
@@ -30,7 +39,33 @@
 
     <textarea id="instruction" name="instruction" class="form-control" rows="3"></textarea>
   </div>
+  
+  <div class="card-header">
+    Add ingredients to this recipe
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <form action="/create_component" method="post">
+        <div class="form-group">
+          <label for="ingredient_id">
+            Ingredient
+          </label>
 
+          <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :class => "form-control") %>
+          or <a href="/ingredients/new">add a new ingredient</a> first
+        </div>
+
+        <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+        
+        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+        <button class="btn btn-block btn-outline-secondary">
+          Add ingredient
+        </button>
+      </form>
+    </li>
+  </ul>
+  <p></p>
   <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
 
   <button class="btn btn-block btn-outline-secondary">

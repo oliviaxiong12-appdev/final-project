@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @pantry.present? %>
+  <% if @pantry.errors.any? %>
+    <% @pantry.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new pantry
+</h1>
+
+
+<hr>
+
+<form action="/create_pantry" method="post">
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @pantry.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="ingredient_id">
+      Ingredient
+    </label>
+
+    <input type="text" id="ingredient_id" name="ingredient_id" class="form-control" value="<%= @pantry.ingredient_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create pantry
+  </button>
+</form>
+
+<hr>
+
+<a href="/pantries">
+  Go back
+</a>
