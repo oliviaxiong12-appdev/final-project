@@ -5,11 +5,6 @@
     </h1>
 
     <div class="row mb-3">
-      <div class="col">
-        <a href="/my_ingredients" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
-      </div>
 
       <div class="col">
         <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-block btn-outline-secondary">
@@ -18,7 +13,7 @@
       </div>
 
       <div class="col">
-        <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-block btn-outline-secondary">
+        <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-block btn-outline-danger">
           Delete ingredient
         </a>
       </div>
@@ -43,7 +38,7 @@
       <dd>
         <% Component.where(ingredient_id: @ingredient.id).each do |component| %>
           <li class="list-group-item">
-            <a href= "/recipes/<%= component.recipe_id %>">
+            <a href= "/recipes/<%= component.recipe_id %>" style="color:#FFAF33">
               <%= Recipe.find(component.recipe_id).title %>
             </a>
             <a href="/delete_component/<%= component.id %>" style="color:red">
@@ -64,7 +59,7 @@
           </label>
 
           <%= select_tag("recipe_id", options_from_collection_for_select(Recipe.all, :id, :title), :class => "form-control") %>
-          or <a href="/recipes/new">add a new recipe</a> first
+          or <a href="/recipes/new" style="color:#FFAF33">add a new recipe</a> first
         </div>
 
         <!-- Label and input for actor_id -->

@@ -14,6 +14,6 @@ class Ingredient < ApplicationRecord
   belongs_to :user
 
   validates :user, :presence => true
-  validates :title, :presence => true, :uniqueness => true
+  validates :title, :presence => true, uniqueness: { message: "has already been created"}
   validates :description, :presence => true
 end

@@ -19,6 +19,6 @@ class Recipe < ApplicationRecord
   has_many :components, :dependent => :destroy
 
   validates :user, :presence => true
-  validates :instruction, :presence => true
-  validates :title, :presence => true
+  validates :instruction, presence: { message: "must be added to the recipe" }
+  validates :title, presence: { message: "cannot be blank" }, uniqueness: { message: "has already been created"}
 end

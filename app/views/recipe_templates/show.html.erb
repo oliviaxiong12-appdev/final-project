@@ -1,10 +1,10 @@
 <div class="row mb-3">
-  <div class="col-md-12">
+  <div class="col-md-8 offset-md-2">
     <h1>
       "<%= @recipe.title %>" Recipe Details
     </h1>
 
-    <div class="row mb-2">
+    <div class="row mb-3">
       <% if @recipe.user_id == current_user.id %>
       <div class="col">
         <a href="/recipes/<%= @recipe.id %>/edit" class="btn btn-block btn-outline-secondary">
@@ -56,13 +56,13 @@
           <div>
           "<%= comment.body %>"
           <% if comment.user == current_user %>
-            <a href="/delete_comment/<%= comment.id %>">
+            <a href="/delete_comment/<%= comment.id %>" style="color:red">
               <i class="fa fa-trash"></i>
             </a>
           <% end %>
           </div>
           <div>
-            -<a href="/users/<%= comment.user_id %>">
+            -<a href="/users/<%= comment.user_id %>" style="color:#FFAF33">
               <%= comment.user.username %>
             </a>
           </div>
@@ -106,7 +106,7 @@
   <ul class="list-group">
     <% @recipe.components.each do |component| %>
       <li class="list-group-item">
-        <a href="/ingredients/<%= component.ingredient_id %>">
+        <a href="/ingredients/<%= component.ingredient_id %>" style="color:#FFAF33">
           <%= Ingredient.find(component.ingredient_id).title %>
         </a>
         <a href="/delete_component/<%= component.id %>" style="color:red"> Remove </a>
@@ -125,7 +125,7 @@
           </label>
 
           <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :class => "form-control") %>
-          or <a href="/ingredients/new">add a new ingredient</a> first
+          or <a href="/ingredients/new" style="color:#FFAF33">add a new ingredient</a> first
         </div>
 
         <!-- Label and input for actor_id -->

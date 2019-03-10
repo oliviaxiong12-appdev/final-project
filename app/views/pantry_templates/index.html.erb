@@ -24,7 +24,7 @@
           </label>
 
           <%= select_tag("ingredient_id", options_from_collection_for_select(Ingredient.all, :id, :title), :class => "form-control") %>
-          or <a href="/ingredients/new">add a new ingredient</a> first
+          or <a href="/ingredients/new" style="color:#FFAF33">add a new ingredient</a> first
         </div>
 
         <!-- Label and input for actor_id -->
@@ -57,7 +57,7 @@
       <% Pantry.where(user_id: current_user.id).each do |pantry| %>
         <tr>
           <td>
-            <a href="/ingredients/<%= Ingredient.find(pantry.ingredient_id).id %>">
+            <a href="/ingredients/<%= Ingredient.find(pantry.ingredient_id).id %>" style="color:#FFAF33">
               <%= Ingredient.find(pantry.ingredient_id).title %>
             </a>
           </td>
@@ -65,7 +65,7 @@
             <%= Ingredient.find(pantry.ingredient_id).description %>
           </td>
           <td>
-            <a href="/delete_pantry/<%= pantry.id %>">
+            <a href="/delete_pantry/<%= pantry.id %>" style="color:red">
               Remove
             </a>
           </td>
@@ -80,7 +80,7 @@
     <ul>
       <% Component.where(ingredient_id: pantry.ingredient_id).each do |component| %>
         <li class="list-group-item">
-          <a href= "/recipes/<%= component.recipe_id %>">
+          <a href= "/recipes/<%= component.recipe_id %>" style="color:#FFAF33">
             <%= Recipe.find(component.recipe_id).title %>
           </a>
           uses <%= Ingredient.find(pantry.ingredient_id).title %>

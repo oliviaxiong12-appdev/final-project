@@ -4,7 +4,7 @@
       All ingredients
     </h1>
 
-    <a href="/ingredients/new" class="btn btn-block btn-outline-secondary">
+    <a href="/ingredients/new" style="color:#FFAF33">
       Add a new ingredient
     </a>
   </div>
@@ -32,7 +32,7 @@
       <% @ingredients.each do |ingredient| %>
       <tr>
         <td>
-          <a href="/ingredients/<%= ingredient.id %>">
+          <a href="/ingredients/<%= ingredient.id %>" style="color:#FFAF33">
             <%= ingredient.title %>
           </a>
         </td>
@@ -44,7 +44,7 @@
         <td>
           <% Component.where(ingredient_id: ingredient.id).each do |component| %>
             <ul>
-              <a href= "/recipes/<%= component.recipe_id %>">
+              <a href= "/recipes/<%= component.recipe_id %>" style="color:#FFAF33">
                 <%= Recipe.find(component.recipe_id).title %>
               </a>
             </ul>
@@ -53,7 +53,7 @@
         
           <% if ingredient.user_id == current_user.id %>
           <td>
-            <a href ="/ingredients/<%= ingredient.id %>/edit">
+            <a href ="/ingredients/<%= ingredient.id %>/edit" style="color:#FFAF33">
               Edit
             </a>
             <a href ="/delete_ingredient/<%= ingredient.id %>" style="color:red">

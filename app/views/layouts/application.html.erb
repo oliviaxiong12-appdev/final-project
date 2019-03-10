@@ -15,7 +15,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
   <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,15 +26,15 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFAF33;">
       <a class="navbar-brand" href="/">What Can I Make?</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="/recipes">All Recipes</a></li>
-          <li class="nav-item"><a class="nav-link" href="/ingredients">All Ingredients</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pantry">My Pantry</a></li>
-          <li class="nav-item"><a class="nav-link" href="/my_likes">My Likes</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipes"><i class="fas fa-utensils"></i> All Recipes</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ingredients"><i class="fas fa-apple-alt"></i> All Ingredients</a></li>
+          <li class="nav-item"><a class="nav-link" href="/pantry"><i class="fas fa-cookie-bite"></i> My Pantry</a></li>
+          <li class="nav-item"><a class="nav-link" href="/my_likes"><i class="fas fa-heart"></i></i> My Likes</a></li>
         </ul>
 
         <ul class="navbar-nav navbar-right">
@@ -56,13 +56,13 @@
           </ul>
             <li class="nav-item">
               <a href="/users/edit" class="nav-link" >
-                <%= current_user.username %>
+               <i class="far fa-edit"></i> <%= current_user.username %>
               </a>
             </li>
   
             <li class="nav-item">
               <a href="/users/sign_out" data-method="delete" class="nav-link">
-                Sign Out
+                <i class="fas fa-sign-out-alt"></i> Sign Out
               </a>
             </li>
           <% end %>

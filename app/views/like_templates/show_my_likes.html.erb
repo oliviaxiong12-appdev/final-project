@@ -4,7 +4,7 @@
       My Liked Recipes
     </h1>
 
-    <a href="/recipes">
+    <a href="/recipes" style="color:#FFAF33">
       Browse all recipes
     </a>
   </div>
@@ -34,7 +34,7 @@
   <% Like.where(user_id: current_user.id).each do |like| %>
   <tr>
       <td>
-        <a href="/recipes/<%= Recipe.find(like.recipe_id).id %>">
+        <a href="/recipes/<%= Recipe.find(like.recipe_id).id %>" style="color:#FFAF33">
           <%= Recipe.find(like.recipe_id).title %>
         </a>
       </td>

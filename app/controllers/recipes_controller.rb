@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
 
       redirect_to("/recipes/#{@recipe.id}", :notice => "Recipe updated successfully.")
     else
-      render("recipe_templates/edit_form_with_errors.html.erb")
+      render("recipe_templates/edit_form.html.erb")
     end
   end
 

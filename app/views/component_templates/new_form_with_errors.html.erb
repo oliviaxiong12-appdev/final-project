@@ -2,7 +2,7 @@
 <% if @component.present? %>
   <% if @component.errors.any? %>
     <% @component.errors.full_messages.each do |message| %>
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissible">
         <%= message %>
       </div>
     <% end %>

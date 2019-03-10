@@ -2,7 +2,7 @@
 <% if @ingredient.present? %>
   <% if @ingredient.errors.any? %>
     <% @ingredient.errors.full_messages.each do |message| %>
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissible">
         <%= message %>
       </div>
     <% end %>
