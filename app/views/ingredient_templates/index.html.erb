@@ -20,10 +20,12 @@
           Ingredient
         </th>
         <th>
+        </th>
+        <th>
           Description
         </th>
         <th>
-          Recipes
+          Sample Recipe
         </th>
         <th>
         </th>
@@ -38,14 +40,27 @@
         </td>
         
         <td>
+          <form action="/create_pantry" method="post" redirect_to("/ingredients")>
+        
+            <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
+            
+            <input type="hidden" id="photo_id" name="ingredient_id" class="form-control" value="<%= ingredient.id %>">
+          
+            <button class="btn btn-block btn-outline-warning">
+              Add to pantry 
+            </button>
+          </form>
+        </td>
+        
+        <td>
           <%= ingredient.description %>
         </td>
         
         <td>
-          <% Component.where(ingredient_id: ingredient.id).each do |component| %>
+          <% ingredient.recipes.each do |recipe| %>
             <ul>
-              <a href= "/recipes/<%= component.recipe_id %>" style="color:#FFAF33">
-                <%= Recipe.find(component.recipe_id).title %>
+              <a href= "/recipes/<%= recipe.id %>" style="color:#FFAF33">
+                <%= recipe.title %>
               </a>
             </ul>
         <% end %>

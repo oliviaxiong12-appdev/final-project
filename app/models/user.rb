@@ -24,6 +24,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  has_many :pantries
+  has_many :ingredients, -> { distinct }, :through => :pantries
+  has_many :pantry_recipes, -> { distinct }, :through => :ingredients, :source => :recipes
   has_many :recipes, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy

@@ -12,6 +12,8 @@
 
 class Ingredient < ApplicationRecord
   belongs_to :user
+  has_many :components
+  has_many :recipes, -> { distinct }, through: :components
 
   validates :user, :presence => true
   validates :title, :presence => true, uniqueness: { message: "has already been created"}

@@ -1,7 +1,7 @@
 class IngredientsController < ApplicationController
   def index
-    @ingredients = Ingredient.all
-
+    @ingredients = Ingredient.all.order(:title)
+    
     render("ingredient_templates/index.html.erb")
   end
 

@@ -28,7 +28,7 @@ class ComponentsController < ApplicationController
 
       redirect_back(:fallback_location => "/recipes/#{@component.recipe_id}", :notice => "Recipe updated successfully.")
     else
-      render("component_templates/new_form_with_errors.html.erb")
+      render("component_templates/new_form.html.erb")
     end
   end
 

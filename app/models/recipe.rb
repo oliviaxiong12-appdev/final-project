@@ -17,6 +17,7 @@ class Recipe < ApplicationRecord
   has_many :likes, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :components, :dependent => :destroy
+  has_many :ingredients, through: :components
 
   validates :user, :presence => true
   validates :instruction, presence: { message: "must be added to the recipe" }

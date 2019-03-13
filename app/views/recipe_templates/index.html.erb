@@ -10,6 +10,18 @@
   </div>
 </div>
 
+<%= search_form_for @q do |f| %>
+  <p class="lead">Narrow results:</p>
+
+  <div class="form-group">
+    <%= f.label :title_cont, "Title contains:" %>
+    <%= f.text_field :title_cont, :class => "form-control", :placeholder => "Enter a few characters" %>
+  </div>
+
+  <%= f.submit :class => "btn btn-secondary btn-block" %>
+  
+  <a href="/recipes" class="btn btn-default btn-block" style="color:#FFAF33">Clear filters</a>
+<% end %>
 
 <hr>
 
@@ -82,7 +94,7 @@
           <button class="btn btn-block btn-outline-secondary">
             Add Comment 
           </button>
-        </form>
+          </form>
         </td>
         
         <% if recipe.user_id == current_user.id %>

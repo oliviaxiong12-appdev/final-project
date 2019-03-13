@@ -1,3 +1,11 @@
+<% if @component.errors.any? %>
+  <% @component.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
 <h1>
   Edit component #<%= @component.id %>
 </h1>

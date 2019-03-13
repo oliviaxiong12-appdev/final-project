@@ -30,7 +30,7 @@ class LikesController < ApplicationController
     if @like.valid?
       @like.save
 
-      redirect_back(:fallback_location => "/likes", :notice => "Like created successfully.")
+      redirect_back(:fallback_location => "/likes", :notice => "Recipe liked!")
     else
       render("like_templates/new_form_with_errors.html.erb")
     end
@@ -62,6 +62,6 @@ class LikesController < ApplicationController
 
     @like.destroy
 
-    redirect_to("/my_likes", :notice => "Like deleted successfully.")
+    redirect_to("/my_likes", :notice => "Recipe unliked!")
   end
 end

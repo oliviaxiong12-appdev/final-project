@@ -1,7 +1,7 @@
 class PantriesController < ApplicationController
   def index
     @pantries = Pantry.all
-
+    
     render("pantry_templates/index.html.erb")
   end
 

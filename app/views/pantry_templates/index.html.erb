@@ -76,15 +76,12 @@
 </div>
 
 <h2>Recommended recipes</h2>
-  <% Pantry.where(user_id: current_user.id).each do |pantry| %>
-    <ul>
-      <% Component.where(ingredient_id: pantry.ingredient_id).each do |component| %>
-        <li class="list-group-item">
-          <a href= "/recipes/<%= component.recipe_id %>" style="color:#FFAF33">
-            <%= Recipe.find(component.recipe_id).title %>
-          </a>
-          uses <%= Ingredient.find(pantry.ingredient_id).title %>
-        </li>
-      <% end %>
-    </ul>
+  <% current_user.pantry_recipes.each do |recipe| %>
+    <img src="<%= recipe.image %>" width="320">
+    <h4><a href = "recipes/<%= recipe.id %>" style="color:#FFAF33"><%= recipe.title %></h4></a>
+    <div></div>
+    uses <% recipe.ingredients.each do |ingredient| %>
+      <%= ingredient.title %>
+    <div></div>
+    <% end %>
   <% end %>

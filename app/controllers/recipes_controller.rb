@@ -1,6 +1,9 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @q = Recipe.ransack(params[:q])
+    @recipes = @q.result(:distinct => true).includes(:components)
+    @components = Component.all
+    @components = @components.uniq
 
     render("recipe_templates/index.html.erb")
   end
