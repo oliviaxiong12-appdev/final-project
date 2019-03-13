@@ -40,16 +40,8 @@ Rails.application.routes.draw do
 
   # Routes for the Component resource:
 
-  # CREATE
-  get("/components/new", { :controller => "components", :action => "new_form" })
   post("/create_component", { :controller => "components", :action => "create_row" })
-
-  # READ
-  get("/components", { :controller => "components", :action => "index" })
-  get("/components/:id_to_display", { :controller => "components", :action => "show" })
-
-  # UPDATE
-  get("/components/:prefill_with_id/edit", { :controller => "components", :action => "edit_form" })
+  
   post("/update_component/:id_to_modify", { :controller => "components", :action => "update_row" })
 
   # DELETE
@@ -78,19 +70,10 @@ Rails.application.routes.draw do
 
   # Routes for the Comment resource:
 
-  # CREATE
-  get("/comments/new", { :controller => "comments", :action => "new_form" })
   post("/create_comment", { :controller => "comments", :action => "create_row" })
 
-  # READ
-  get("/comments", { :controller => "comments", :action => "index" })
-  get("/comments/:id_to_display", { :controller => "comments", :action => "show" })
-
-  # UPDATE
-  get("/comments/:prefill_with_id/edit", { :controller => "comments", :action => "edit_form" })
   post("/update_comment/:id_to_modify", { :controller => "comments", :action => "update_row" })
 
-  # DELETE
   get("/delete_comment/:id_to_remove", { :controller => "comments", :action => "destroy_row" })
 
   #------------------------------
@@ -100,15 +83,9 @@ Rails.application.routes.draw do
   get("/my_likes", { :controller => "likes", :action => "show_my_likes" })
   
   # CREATE
-  get("/likes/new", { :controller => "likes", :action => "new_form" })
   post("/create_like", { :controller => "likes", :action => "create_row" })
 
-  # READ
-  get("/likes", { :controller => "likes", :action => "index" })
-  get("/likes/:id_to_display", { :controller => "likes", :action => "show" })
-
   # UPDATE
-  get("/likes/:prefill_with_id/edit", { :controller => "likes", :action => "edit_form" })
   post("/update_like/:id_to_modify", { :controller => "likes", :action => "update_row" })
 
   # DELETE

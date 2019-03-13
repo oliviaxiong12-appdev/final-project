@@ -1,22 +1,4 @@
 class CommentsController < ApplicationController
-  def index
-    @comments = Comment.all
-
-    render("comment_templates/index.html.erb")
-  end
-
-  def show
-    @comment = Comment.find(params.fetch("id_to_display"))
-
-    render("comment_templates/show.html.erb")
-  end
-
-  def new_form
-    @comment = Comment.new
-
-    render("comment_templates/new_form.html.erb")
-  end
-
   def create_row
     @comment = Comment.new
 
@@ -33,11 +15,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit_form
-    @comment = Comment.find(params.fetch("prefill_with_id"))
-
-    render("comment_templates/edit_form.html.erb")
-  end
 
   def update_row
     @comment = Comment.find(params.fetch("id_to_modify"))
