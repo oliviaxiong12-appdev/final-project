@@ -3,18 +3,16 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
+  root "recipes#index"
   # Routes for the Pantry resource:
 
   # CREATE
-  get("/pantries/new", { :controller => "pantries", :action => "new_form" })
   post("/create_pantry", { :controller => "pantries", :action => "create_row" })
 
   # READ
   get("/pantry", { :controller => "pantries", :action => "index" })
-  get("/pantries/:id_to_display", { :controller => "pantries", :action => "show" })
 
   # UPDATE
-  get("/pantries/:prefill_with_id/edit", { :controller => "pantries", :action => "edit_form" })
   post("/update_pantry/:id_to_modify", { :controller => "pantries", :action => "update_row" })
 
   # DELETE
@@ -22,8 +20,6 @@ Rails.application.routes.draw do
 
   #------------------------------
   # Routes for the Ingredient resource:
-  root "recipes#index"
-  get("/my_ingredients", { :controller => "ingredients", :action => "show_my_ingredients" })
   
   # CREATE
   get("/ingredients/new", { :controller => "ingredients", :action => "new_form" })

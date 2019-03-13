@@ -10,11 +10,6 @@ class IngredientsController < ApplicationController
 
     render("ingredient_templates/show.html.erb")
   end
-
-  def show_my_ingredients
-    render("ingredient_templates/show_my_ingredients.html.erb")
-  end
-  
   
   def new_form
     @ingredient = Ingredient.new
@@ -56,7 +51,7 @@ class IngredientsController < ApplicationController
 
       redirect_to("/ingredients/#{@ingredient.id}", :notice => "Ingredient updated successfully.")
     else
-      render("ingredient_templates/edit_form_with_errors.html.erb")
+      render("ingredient_templates/edit_form.html.erb")
     end
   end
 

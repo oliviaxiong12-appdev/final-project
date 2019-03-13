@@ -5,18 +5,6 @@ class PantriesController < ApplicationController
     render("pantry_templates/index.html.erb")
   end
 
-  def show
-    @pantry = Pantry.find(params.fetch("id_to_display"))
-
-    render("pantry_templates/show.html.erb")
-  end
-
-  def new_form
-    @pantry = Pantry.new
-
-    render("pantry_templates/new_form.html.erb")
-  end
-
   def create_row
     @pantry = Pantry.new
 
@@ -30,12 +18,6 @@ class PantriesController < ApplicationController
     else
       render("pantry_templates/index.html.erb")
     end
-  end
-
-  def edit_form
-    @pantry = Pantry.find(params.fetch("prefill_with_id"))
-
-    render("pantry_templates/edit_form.html.erb")
   end
 
   def update_row

@@ -22,6 +22,7 @@ class ComponentsController < ApplicationController
 
     @component.recipe_id = params.fetch("recipe_id")
     @component.ingredient_id = params.fetch("ingredient_id")
+    @component.amount = params.fetch("amount")
 
     if @component.valid?
       @component.save
@@ -43,6 +44,7 @@ class ComponentsController < ApplicationController
 
     @component.recipe_id = params.fetch("recipe_id")
     @component.ingredient_id = params.fetch("ingredient_id")
+    @component.amount = params.fetch("amount")
 
     if @component.valid?
       @component.save

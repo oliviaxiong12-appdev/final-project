@@ -61,10 +61,15 @@
           <%= select_tag("recipe_id", options_from_collection_for_select(Recipe.all, :id, :title), :class => "form-control") %>
           or <a href="/recipes/new" style="color:#FFAF33">add a new recipe</a> first
         </div>
-
-        <!-- Label and input for actor_id -->
-        <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
-
+        
+          <input type="hidden" name="ingredient_id" value="<%= @ingredient.id %>">
+          <label for="amount">
+           Quantity used in recipe
+          </label>
+      
+          <input type="text" id="amount" name="amount" class="form-control">
+        <p></p>
+        
         <button class="btn btn-block btn-outline-secondary">
           Add component
         </button>
